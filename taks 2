@@ -1,1 +1,40 @@
+#include <stdio.h>
+// Функція для знаходження найбільшого спільного дільника (НСД) двох чисел
+int nsd(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    return nsd(b, a % b); // передає nsd b як нове a, а (a % b)-залишок ділення а на b  як нове b.
+}
+// Функція для знаходження найменшого спільного кратного (НСК) двох чисел
+int nsk(int a, int b) {
+    return (a * b) / nsd(a, b);
+}
+// Функція для знаходження найменшого спільного кратного ch чисел
+int findnsk(int arr[], int n) {
+    int result = arr[0];
+    for (int i = 1; i < n; i++) {
+        result = nsk(result, arr[i]);
+    }
+    return result;
+}
 
+int main() {SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    int arr[20];
+    int n;
+    int ch;
+    printf("Введіть кількість чисел:\n");
+    scanf ("%d",&ch);
+
+    printf("Введіть числа:\n");
+    for (int i = 0; i < ch; i++) {
+        printf("Число %d: ", i+1);
+        scanf("%d", &arr[i]);
+    }
+
+    int result = findnsk(arr, ch);
+    printf("Найменше спільне кратне: %d\n", result);
+
+    return 0;
+}
