@@ -1,1 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct {
+int Prog;
+int Math;
+int IT;
+int Alg;
+} exam4marks;
+
+typedef struct {
+char surname[12];
+char name[12];
+char patronymic[12];
+exam4marks mark;
+} student;
+
+student getinf()
+{
+student any;
+printf ("\n Intput surname\n");
+scanf ("%s", &any.surname);
+printf ("\n Intput name\n");
+scanf ("%s", &any.name);
+printf ("\n Intput patronymic\n");
+scanf ("%s", &any.patronymic);
+printf ("\n Intput 4 exam marks\n");
+printf ("\n Prog: ");
+scanf ("%d", &any.mark.Prog);
+printf ("\n Math: ");
+scanf ("%d", &any.mark.Math);
+printf ("\n IT: ");
+scanf ("%d", &any.mark.IT);
+printf ("\n Algebra: ");
+scanf ("%d", &any.mark.Alg);
+return any;
+}
+
+
+int main ()
+{
+    int q,k,j;
+    char searchsurname[12],searchname[12] ,searchpatronymic[12];
+
+    printf ("Input quantity of students\n");
+    scanf ("%d",&q);
+    student* list = (student*) malloc(q * sizeof(student));
+     if (!list) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+    k=0;
+    printf ("\nInput elements of struct\n");
+    while (k<q)
+    {
+      list [k]= getinf();
+      k++;
+    }
+    printf ("\n Intput surname, name , patronymic of wanted student\n");
+    scanf ("%s", &searchsurname);
+    scanf ("%s", &searchname);
+    scanf ("%s", &searchpatronymic);
+    for (j=0;j<q;j++)
+    {
+        if (strcmp(list[j].surname,searchsurname) == 0 &&strcmp(list[j].name,searchname)== 0 &&strcmp(list[j].patronymic,searchpatronymic)== 0) {printf ("%d",(list[j].mark.Prog+list[j].mark.IT+list[j].mark.Math+list[j].mark.Alg)/4);}
+    }
+    free(list);
+    return 0;
+}
 
