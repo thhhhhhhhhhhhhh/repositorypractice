@@ -1,1 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <windows.h>
+
+int countIntersectionPoints(double x1, double y1, double r1, double x2, double y2, double r2) {
+    double distance, sumRadii;
+
+    // Обчислення відстані між центрами кіл
+    distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+
+    // Обчислення суми радіусів
+    sumRadii = r1 + r2;
+
+    // Перевірка умов перетину
+    if (distance > sumRadii) {
+        // Кола не перетинаються
+        return 0;
+    } else if (distance == sumRadii) {
+        // Кола торкаються ззовні
+        return 1;
+    } else if (distance < sumRadii) {
+        double diffRadii = fabs(r1 - r2);
+
+        if (distance < diffRadii) {
+            // Одне коло міститься всередині іншого
+            return 0;
+        } else if (distance == diffRadii) {
+            // Кола торкаються всередині
+            return -1;
+        } else {
+            // Кола перетинаються в двох точках
+            return -1;
+        }
+    }
+
+    // Даний випадок не повинен статися
+    printf ("Два кола не перетинаються");
+}
+
+int main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    double x1, y1, r1, x2, y2, r2;
+    int intersectionPoints;
+
+    // Введення координат і радіусів кіл
+    printf("Введіть координати центра першого кола (x1, y1): ");
+    scanf("%lf %lf", &x1, &y1);
+    printf("Введіть радіус першого кола (r1): ");
+    scanf("%lf", &r1);
+    printf("Введіть координати центра другого кола (x2, y2): ");
+    scanf("%lf %lf", &x2, &y2);
+    printf("Введіть радіус другого кола (r2): ");
+    scanf("%lf", &r2);
+
+    // Визначення кількості точок перетину
+    intersectionPoints = countIntersectionPoints(x1, y1, r1, x2, y2, r2);
+
+    // Виведення результату
+    if (intersectionPoints==0) printf ("Два кола не перетинаються");
+    else printf("Кількість точок перетину двох кіл(якщо бескінечно то -1): %d\n", intersectionPoints);
+
+    return 0;
+}
 
