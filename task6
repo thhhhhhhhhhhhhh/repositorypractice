@@ -1,1 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <windows.h>
+
+int main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    //Оголошення змінних
+    double x1, y1, x2, y2, dx, dy, length;
+
+    // Введення початкових і кінцевих координат
+    printf("Введіть координати початкової точки (x1, y1): ");
+    scanf("%lf %lf", &x1, &y1);
+    printf("Введіть координати кінцевої точки (x2, y2): ");
+    scanf("%lf %lf", &x2, &y2);
+
+    // Обчислення різниці координат
+    dx = x2 - x1;
+    dy = y2 - y1;
+
+    // Обчислення суми квадратів різниць координат
+    length = sqrt(dx * dx + dy * dy);
+
+    // Виведення результату
+    printf("Довжина вектора: %.6lf\n", length);
+
+    return 0;
+}
 
