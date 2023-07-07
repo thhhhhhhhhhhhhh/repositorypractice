@@ -15,6 +15,7 @@ int factorial(int num) {
 // Функція для обчислення кількості анаграм
 int countAnagrams(char word[]) {
     int length = strlen(word);
+    if (length>14) {printf("Перевищена максимальна довжина слова(14) "); return 0;}
 
     // Знаходимо факторіал довжини слова
     int factLength = factorial(length);
@@ -61,4 +62,3 @@ int main() {
 
     return 0;
 }
-
